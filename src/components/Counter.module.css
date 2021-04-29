@@ -1,0 +1,56 @@
+.wrapper {
+    width: 300px;
+    height: 300px;
+    margin: 25px auto;
+    padding-top: 20px;
+    border: 2px solid #61dafb;
+}
+
+.display {
+    width: 245px;
+    height: 150px;
+    margin: 0 auto;
+    border-radius: 5px;
+    border: 1px solid cornflowerblue;
+    background-color: #61dafb;
+}
+
+.num {
+    font-size: 20px;
+    display: block;
+    margin-top: 50px;
+}
+
+.maxNumber {
+    display: block;
+    margin-top: 50px;
+    font-size: 30px;
+    color: darkred;
+    font-weight: bold;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 245px;
+    height: 100px;
+    margin: 20px auto;
+    border: 1px solid cornflowerblue;
+    border-radius: 5px;
+}
+
+.btn_inc {
+    outline: none ;
+    border-radius: 5px;
+    background-color: #61dafb;
+    margin: 30px 20px;
+    width: 70px;
+}
+
+.btn_reset {
+    border-radius: 5px;
+    background-color: #61dafb;
+    margin: 30px 20px;
+    width: 90px;
+}
