@@ -1,15 +1,34 @@
-import React from "react";
-import s from './Settings.module.css'
+import React, {ChangeEvent} from "react";
 
-export const Settings = () => {
+type SettingsPropsType = {
+    maxValue: number
+    startValue: number
+    onChangeStartValue: (value: number) => void
+    onChangeMaxValue: (value: number) => void
+}
+
+export const Settings: React.FC<SettingsPropsType> = ({ maxValue, startValue, onChangeMaxValue, onChangeStartValue}) => {
+    const onChangeMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => onChangeMaxValue(JSON.parse(e.currentTarget.value))
+    const onChangeStartValueHandler = (e: ChangeEvent<HTMLInputElement>) => onChangeStartValue(JSON.parse(e.currentTarget.value))
+
     return (
         <>
-            <div className={s.display}>
-                <span>max value: </span><input />
-                <span>start value</span><input/>
+            <div>
+                <span>max value: </span>
+                <input
+                    type={'number'}
+                    value={maxValue}
+                    onChange={onChangeMaxValueHandler}
+                />
             </div>
             <div>
-                <button>set</button>
+                <span>start value: </span>
+                <input
+                    type={'number'}
+                    value={startValue}
+                    onChange={onChangeStartValueHandler}
+
+                />
             </div>
         </>
     )
