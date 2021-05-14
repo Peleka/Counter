@@ -5,6 +5,7 @@ type CounterPropsType = {
 }
 
 export const Counter: React.FC<CounterPropsType> = ({value}) => {
+
     return (
         <>
             {value}

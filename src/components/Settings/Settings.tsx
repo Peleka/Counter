@@ -27,7 +27,6 @@ export const Settings: React.FC<SettingsPropsType> = ({ maxValue, startValue, on
                     type={'number'}
                     value={startValue}
                     onChange={onChangeStartValueHandler}
-
                 />
             </div>
         </>
