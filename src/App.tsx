@@ -6,7 +6,8 @@ import {Counter} from "./components/Counter/Counter";
 
 
 function App() {
-    const [value, setValue] = useState<number>(0)
+
+    const [value, setValue] = useState<number | string>(0)
     const [maxValue, setMaxValue] = useState<number>(0)
     const [startValue, setStartValue] = useState<number>(0)
     const [disabled, setDisabled] = useState<boolean>(false)
@@ -15,11 +16,11 @@ function App() {
     const incorrect = 'Incorrect value!'
     const correct = 'Enter value and press "set" '
 
-
-    // useEffect(() => {
-    //     setError(false)
-    //     setDisabled(true)
-    // }, [])
+    useEffect(() => {
+        setValue(correct)
+        setError(false)
+        setDisabled(true)
+    }, [])
 
     useEffect(() => {
         let valueStorageAsString = localStorage.getItem('value')
@@ -46,7 +47,8 @@ function App() {
     }, [value, maxValue, startValue])
 
     function increment() {
-        setValue(value + 1)
+            let num = +value + 1
+            setValue(num)
     }
 
     function reset() {
@@ -59,11 +61,13 @@ function App() {
     }
 
     function onChangeStartValue(value: number) {
-        if (value < 0 || value === maxValue) {
+        if (value < 0 || value === maxValue || value > maxValue) {
+            setValue(incorrect)
             setStartValue(value)
             setDisabled(true)
             setError(true)
         } else {
+            setValue(correct)
             setStartValue(value)
             setDisabled(false)
             setError(false)
@@ -72,10 +76,12 @@ function App() {
 
     function onChangeMaxValue(value: number) {
         if (value < 0 || value === startValue) {
+            setValue(incorrect)
             setMaxValue(value)
             setDisabled(true)
             setError(true)
         } else {
+            setValue(correct)
             setMaxValue(value)
             setDisabled(false)
             setError(false)
@@ -99,21 +105,18 @@ function App() {
                     disabled={disabled}
                 />
             </div>
-
             <div className={'Wrapper'}>
                 <div className={'Wrapper_small'}>
                     <Counter
-                        notice={error}
                         value={value}
                         maxValue={maxValue}
                         incorrect={incorrect}
-                        correct={correct}
                     />
                 </div>
                 <Button
                     buttonName={'INC'}
                     onClick={increment}
-                    disabled={value === maxValue || error}
+                    disabled={value === maxValue || error || value === incorrect || value === correct}
                 />
                 <Button
                     buttonName={'RESET'}

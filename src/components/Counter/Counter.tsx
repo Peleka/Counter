@@ -2,27 +2,17 @@ import React from "react";
 import s from './Counter.module.css'
 
 type CounterPropsType = {
-    value: number
-    notice: boolean
+    value: number | string
     maxValue: number
-    correct: string
     incorrect: string
-
 }
 
-export const Counter: React.FC<CounterPropsType> = (
-    {value, notice, maxValue, incorrect, correct}
-) => {
-    const styleNumber = !(maxValue === value) ? s.standart : s.bold
-    const styleNotice = notice ? s.bold : s.standart
-
+export const Counter: React.FC<CounterPropsType> = ( {value, maxValue, incorrect} ) => {
+    const styleNumber = (maxValue === +value) || (value === incorrect) ? s.bold : s.standart
 
     return (
         <>
-            {value
-                ? <span className={styleNumber}>{value}</span>
-                : <span className={styleNotice}>{notice ? incorrect : correct }</span>
-            }
+            {<span className={styleNumber}>{value}</span>}
         </>
     )
 }
