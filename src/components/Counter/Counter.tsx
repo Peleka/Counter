@@ -2,17 +2,19 @@ import React from "react";
 import s from './Counter.module.css'
 
 type CounterPropsType = {
-    value: number | string
+    value: number
     maxValue: number
-    incorrect: string
+    isValuesSet: boolean
+    error: boolean
 }
 
-export const Counter: React.FC<CounterPropsType> = ( {value, maxValue, incorrect} ) => {
-    const styleNumber = (maxValue === +value) || (value === incorrect) ? s.bold : s.standart
+export const Counter: React.FC<CounterPropsType> = ({value, maxValue, isValuesSet,error}) => {
+    const styleNumber = (maxValue === value || error) ? s.bold : s.standart
+
 
     return (
         <>
-            {<span className={styleNumber}>{value}</span>}
+            {<span className={styleNumber}>{ error ? 'error' : isValuesSet ? 'set values' : value}</span>}
         </>
     )
 }

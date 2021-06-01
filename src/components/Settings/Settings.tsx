@@ -9,8 +9,8 @@ type SettingsPropsType = {
 }
 
 export const Settings: React.FC<SettingsPropsType> = ({maxValue, startValue, onChangeMaxValue, onChangeStartValue}) => {
-    const onChangeMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => onChangeMaxValue(+(e.currentTarget.value))
-    const onChangeStartValueHandler = (e: ChangeEvent<HTMLInputElement>) => onChangeStartValue(+(e.currentTarget.value))
+    const onChangeMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => onChangeMaxValue(e.currentTarget.valueAsNumber)
+    const onChangeStartValueHandler = (e: ChangeEvent<HTMLInputElement>) => onChangeStartValue(e.currentTarget.valueAsNumber)
 
     return (
         <>

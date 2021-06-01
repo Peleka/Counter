@@ -7,20 +7,12 @@ import {Counter} from "./components/Counter/Counter";
 
 function App() {
 
-    const [value, setValue] = useState<number | string>(0)
-    const [maxValue, setMaxValue] = useState<number>(0)
+    const [value, setValue] = useState<number>(0)
+    const [maxValue, setMaxValue] = useState<number>(5)
     const [startValue, setStartValue] = useState<number>(0)
     const [disabled, setDisabled] = useState<boolean>(false)
-    const [error, setError] = useState(false)
-
-    const incorrect = 'Incorrect value!'
-    const correct = 'Enter value and press "set" '
-
-    useEffect(() => {
-        setValue(correct)
-        setError(false)
-        setDisabled(true)
-    }, [])
+    const [isValuesSet, setIsValuesSet] = useState<boolean>(false)
+    const [error, setError] = useState<boolean>(false)
 
     useEffect(() => {
         let valueStorageAsString = localStorage.getItem('value')
@@ -47,8 +39,7 @@ function App() {
     }, [value, maxValue, startValue])
 
     function increment() {
-            let num = +value + 1
-            setValue(num)
+        setValue(value + 1)
     }
 
     function reset() {
@@ -56,35 +47,35 @@ function App() {
     }
 
     function changeDisplayValue() {
+        setIsValuesSet(false)
         setValue(startValue)
         setDisabled(true)
     }
 
     function onChangeStartValue(value: number) {
+        setIsValuesSet(true)
         if (value < 0 || value === maxValue || value > maxValue) {
-            setValue(incorrect)
+            setError(true)
             setStartValue(value)
             setDisabled(true)
-            setError(true)
         } else {
-            setValue(correct)
+            setError(false)
             setStartValue(value)
             setDisabled(false)
-            setError(false)
         }
     }
 
     function onChangeMaxValue(value: number) {
-        if (value < 0 || value === startValue) {
-            setValue(incorrect)
+        setIsValuesSet(true)
+        if (value < 0 || value === startValue || value < startValue) {
+            setError(true)
             setMaxValue(value)
             setDisabled(true)
-            setError(true)
+
         } else {
-            setValue(correct)
+            setError(false)
             setMaxValue(value)
             setDisabled(false)
-            setError(false)
         }
     }
 
@@ -110,18 +101,19 @@ function App() {
                     <Counter
                         value={value}
                         maxValue={maxValue}
-                        incorrect={incorrect}
+                        isValuesSet={isValuesSet}
+                        error={error}
                     />
                 </div>
                 <Button
                     buttonName={'INC'}
                     onClick={increment}
-                    disabled={value === maxValue || error || value === incorrect || value === correct}
+                    disabled={value === maxValue || error}
                 />
                 <Button
                     buttonName={'RESET'}
                     onClick={reset}
-                    disabled={value === 0}
+                    disabled={value === 0 || error}
                 />
             </div>
         </div>
