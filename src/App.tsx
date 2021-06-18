@@ -81,6 +81,7 @@ function App() {
             <div className={'Wrapper'}>
                 <div className={'Wrapper_small'}>
                     <Settings
+
                         maxValue={state.counter.maxValue}
                         startValue={state.counter.startValue}
                         onChangeStartValue={onChangeStartValue}
@@ -97,6 +98,7 @@ function App() {
                 <div className={'Wrapper_small'}>
                     <Counter
                         value={state.counter.value}
+                        startValue={state.counter.startValue}
                         maxValue={state.counter.maxValue}
                         isValuesSet={state.counter.isValuesSet}
                         error={state.counter.error}
