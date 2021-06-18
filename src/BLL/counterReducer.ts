@@ -14,19 +14,19 @@ export const counterReducer = (state: InitialStateType = initialState, action: A
         case "INC_VALUE":
             return {
                 ...state,
-                value: state.value + 1
+                value: state.value + 1,
             }
         case "RESET_VALUE":
             return {
                 ...state,
-                value: state.startValue
+                value: state.startValue,
             }
         case "CHANGE_DISPLAY_VALUE" :
             return {
                 ...state,
                 isValuesSet: false,
                 value: state.startValue,
-                disabled: true
+                disabled: true,
             }
         case "CHANGE_START_VALUE":
             return {
@@ -41,7 +41,6 @@ export const counterReducer = (state: InitialStateType = initialState, action: A
                 isValuesSet: true,
                 maxValue: action.value,
                 disabled: false,
-
             }
         default :
             return state

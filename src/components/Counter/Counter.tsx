@@ -9,16 +9,17 @@ type CounterPropsType = {
     error: boolean
 }
 
-export const Counter: React.FC<CounterPropsType> = ({value, maxValue, startValue,isValuesSet,error}) => {
+export const Counter: React.FC<CounterPropsType> = ({value, maxValue, startValue, isValuesSet, error}) => {
 
-    if( maxValue < 0 || startValue < 0 || maxValue === startValue) {
+    if (maxValue < 0 || startValue < 0 || maxValue === startValue) {
         error = true
     }
     let styleNumber = maxValue === value || error ? s.bold : s.standard
 
     return (
         <>
-            {<span className={styleNumber}>{ error ? 'Incorrect value' : isValuesSet ? 'enter values and press "set"' : value}</span>}
+            {<span
+                className={styleNumber}>{error ? 'Incorrect value' : isValuesSet ? 'enter values and press "set"' : value}</span>}
         </>
     )
 }

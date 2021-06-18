@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import './App.css';
 import {Settings} from "./components/Settings/Settings";
 import {Button} from "./components/Button/Button";
@@ -53,25 +53,12 @@ function App() {
 
     function changeDisplayValue() {
         dispatch(changeDisplayValueAC())
-
     }
 
     function onChangeStartValue(value: number) {
         dispatch(changeStartValueAC(value))
     }
 
-    // function onChangeMaxValue(value: number) {
-    //     setIsValuesSet(true)
-    //     setMaxValue(value)
-    //     if (value < 0 || value === startValue || value < startValue) {
-    //         setError(true)
-    //         setDisabled(true)
-    //
-    //     } else {
-    //         setError(false)
-    //         setDisabled(false)
-    //     }
-    // }
     function onChangeMaxValue(value: number) {
         dispatch(changeMaxValueAC(value))
     }
@@ -81,7 +68,6 @@ function App() {
             <div className={'Wrapper'}>
                 <div className={'Wrapper_small'}>
                     <Settings
-
                         maxValue={state.counter.maxValue}
                         startValue={state.counter.startValue}
                         onChangeStartValue={onChangeStartValue}
